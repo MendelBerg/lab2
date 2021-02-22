@@ -15,7 +15,11 @@ def sort_data(lst):
 def have_experience(exp, staff):
     staff_true = [person.name for person in staff if 2021 - int(person.year) > exp]
 
-    return staff_true if len(staff_true) > 0 else f'No person has {exp} year experience'
+    if type(staff_true) is list:
+        print(f'The existed staff with {exp} year experience:')
+        print(*staff_true)
+    else:
+        print(f'No person has {exp} year experience')
 
 
 # ===========================================================
@@ -50,23 +54,17 @@ for x in a:
 # ===========================================================
 sort_data(data)
 
-experience = int(input('Minimally experience: '))
-exist_exp = have_experience(experience, data)
-
-# ===========================================================
 new_file = open("data_2.txt", "w")
 
 for x in data:
     new_file.write(f'{x.name}, {x.position}, {x.year}\n')
 
-if type(exist_exp) is str:
-    new_file.write('\n' + exist_exp)
-else:
-    new_file.write(f'\nThe existed staff with {experience} year experience: \n')
-    for name in exist_exp:
-        new_file.write(f'{name}\n')
-
 new_file.close()
 
 new_file = open("data_2.txt", "r")
 print(new_file.read())
+
+# =====================================================
+
+experience = int(input('Minimally experience: '))
+have_experience(experience, data)
