@@ -3,25 +3,13 @@ from collections import namedtuple
 Firma = namedtuple("Firma", "name position year")
 
 
-def sort_data(staff):
-    for _ in range(1, len(staff)):
-        for i in range(len(staff) - 1):
-            if staff[i].name > staff[i + 1].name:
-                staff[i], staff[i + 1] = staff[i + 1], staff[i]
+def put_data(file_name, staff):
+    file = open(f"files/{file_name}.txt", "w")
 
-    return staff
+    for worker in staff:
+        file.write(f'{worker.name}, {worker.position}, {worker.year}\n')
 
-
-def get_staff_with_experience(exp, staff):
-    from datetime import datetime as date
-
-    staff_true = [worker.name for worker in staff if date.now().year - worker.year > exp]
-
-    if len(staff_true) != 0:
-        print(f'The existed staff with {exp} year experience:')
-        print(*staff_true, sep='\n')
-    else:
-        print(f'No person has {exp} year experience')
+    file.close()
 
 
 def get_arr_data(file_name):
@@ -42,10 +30,22 @@ def get_arr_data(file_name):
     ]
 
 
-def put_data(file_name, staff):
-    file = open(f"files/{file_name}.txt", "w")
+def sort_data(staff):
+    for _ in range(1, len(staff)):
+        for i in range(len(staff) - 1):
+            if staff[i].name > staff[i + 1].name:
+                staff[i], staff[i + 1] = staff[i + 1], staff[i]
 
-    for worker in staff:
-        file.write(f'{worker.name}, {worker.position}, {worker.year}\n')
+    return staff
 
-    file.close()
+
+def get_staff_with_experience(exp, staff):
+    from datetime import datetime as date
+
+    have_exp = [worker.name for worker in staff if date.now().year - worker.year > exp]
+
+    if len(have_exp) != 0:
+        print(f'The existed staff with {exp} year experience:')
+        print(*have_exp, sep='\n')
+    else:
+        print(f'No person has {exp} year experience')
