@@ -1,3 +1,2 @@
-Bogdan, teacher, 2019
-DIma, worker, 2000
-Kolya, cleaner, 2010
+sdfg, sdfg, 456
+sf, sdf, 234

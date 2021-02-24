@@ -25,6 +25,19 @@ def have_experience(exp, staff):
         print(f'No person has {exp} year experience')
 
 
+def get_arr_data(file_name):
+    count = sum(1 for _ in open(f'files/{file_name}.txt', 'r'))
+    f = open(f'files/{file_name}.txt', 'r')
+
+    workers_data = []
+
+    for x in range(count):
+        name, position, year = f.readline().split(', ')
+        workers_data.append(Firma(name, position, int(year.replace('\n', ''))))
+
+    return workers_data
+
+
 def put_data(file_name, arr_data):
     file = open(f"files/{file_name}.txt", "w")
 
