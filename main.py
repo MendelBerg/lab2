@@ -5,14 +5,10 @@ workers_data = []
 
 for x in range(amount):
     print(f'The person №{x + 1}')
-    name = input('Name: ')
-    position = input('Position: ')
-    year = int(input('Year: '))
-    workers_data.append(tools.Firma(name, position, year))
+    workers_data.append(tools.Firma(
+        input('Name: '),
+        input('Position: '),
+        int(input('Year: '))
+    ))
 
-file = open("files/data.txt", "w")
-
-for x in workers_data:
-    file.write(f'{x.name}, {x.position}, {x.year}\n')
-
-file.close()
+tools.put_data('data', workers_data)

@@ -23,3 +23,12 @@ def have_experience(exp, staff):
         print(*staff_true, sep='\n')
     else:
         print(f'No person has {exp} year experience')
+
+
+def put_data(file_name, arr_data):
+    file = open(f"files/{file_name}.txt", "w")
+
+    for struct in arr_data:
+        file.write(f'{struct.name}, {struct.position}, {struct.year}\n')
+
+    file.close()
