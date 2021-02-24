@@ -1,15 +1,4 @@
-class Firma:
-    def __init__(self, name, position, year):
-        self.name = name
-        self.position = position
-        self.year = year
-
-
-def sort_data(lst):
-    for bubble in range(1, len(lst)):
-        for struct in range(len(lst) - 1):
-            if lst[struct].name > lst[struct + 1].name:
-                lst[struct], lst[struct + 1] = lst[struct + 1], lst[struct]
+import tools
 
 
 f = open('files/data.txt', 'r')
@@ -19,9 +8,9 @@ workers_data = []
 
 for x in range(count):
     name, position, year = f.readline().split(', ')
-    workers_data.append(Firma(name, position, int(year.replace('\n', ''))))
+    workers_data.append(tools.Firma(name, position, int(year.replace('\n', ''))))
 
-sort_data(workers_data)
+tools.sort_data(workers_data)
 
 
 new_file = open("files/data_shorted.txt", "w")

@@ -1,9 +1,4 @@
-class Firma:
-    def __init__(self, name, position, year):
-        self.name = name
-        self.position = position
-        self.year = year
-
+import tools
 
 amount = int(input('Amount structures: '))
 workers_data = []
@@ -13,7 +8,7 @@ for x in range(amount):
     name = input('Name: ')
     position = input('Position: ')
     year = int(input('Year: '))
-    workers_data.append(Firma(name, position, year))
+    workers_data.append(tools.Firma(name, position, year))
 
 file = open("files/data.txt", "w")
 

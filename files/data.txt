@@ -1,3 +1,3 @@
-Dima, cleaner, 2010
-Ann, teacher, 2015
-Bob, worker, 2025
+Kolya, cleaner, 2010
+Bogdan, teacher, 2019
+DIma, worker, 2000
