@@ -1,22 +1,19 @@
-from datetime import datetime as date
+from collections import namedtuple
+
+Firma = namedtuple("Firma", "name position year")
 
 
-class Firma:
-    def __init__(self, name, position, year):
-        self.name = name
-        self.position = position
-        self.year = year
-
-
-def sort_data(lst):
-    for bubble in range(1, len(lst)):
-        for struct in range(len(lst) - 1):
-            if lst[struct].name > lst[struct + 1].name:
-                lst[struct], lst[struct + 1] = lst[struct + 1], lst[struct]
+def sort_data(staff):
+    for _ in range(1, len(staff)):
+        for i in range(len(staff) - 1):
+            if staff[i].name > staff[i + 1].name:
+                staff[i], staff[i + 1] = staff[i + 1], staff[i]
 
 
 def have_experience(exp, staff):
-    staff_true = [person.name for person in staff if date.now().year - person.year > exp]
+    from datetime import datetime as date
+
+    staff_true = [worker.name for worker in staff if date.now().year - worker.year > exp]
 
     if len(staff_true) != 0:
         print(f'The existed staff with {exp} year experience:')
@@ -26,22 +23,29 @@ def have_experience(exp, staff):
 
 
 def get_arr_data(file_name):
-    count = sum(1 for _ in open(f'files/{file_name}.txt', 'r'))
     file = open(f'files/{file_name}.txt', 'r')
 
-    workers_data = []
-
-    for x in range(count):
-        name, position, year = file.readline().split(', ')
-        workers_data.append(Firma(name, position, int(year.replace('\n', ''))))
+    workers_data = [
+        Firma(
+            name=worker[0],
+            position=worker[1],
+            year=int(worker[2].replace('\n', ''))
+        )
+        for worker in [
+            file.readline().split(', ')
+            for _ in range(
+                sum(1 for _ in open(f'files/{file_name}.txt', 'r'))
+            )
+        ]
+    ]
 
     return workers_data
 
 
-def put_data(file_name, arr_data):
+def put_data(file_name, workers_data):
     file = open(f"files/{file_name}.txt", "w")
 
-    for struct in arr_data:
-        file.write(f'{struct.name}, {struct.position}, {struct.year}\n')
+    for worker in workers_data:
+        file.write(f'{worker.name}, {worker.position}, {worker.year}\n')
 
     file.close()
