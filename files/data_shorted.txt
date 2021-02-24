@@ -1,0 +1,3 @@
+Ann, teacher, 2015
+Bob, worker, 2025
+Dima, cleaner, 2010
