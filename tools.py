@@ -27,12 +27,12 @@ def have_experience(exp, staff):
 
 def get_arr_data(file_name):
     count = sum(1 for _ in open(f'files/{file_name}.txt', 'r'))
-    f = open(f'files/{file_name}.txt', 'r')
+    file = open(f'files/{file_name}.txt', 'r')
 
     workers_data = []
 
     for x in range(count):
-        name, position, year = f.readline().split(', ')
+        name, position, year = file.readline().split(', ')
         workers_data.append(Firma(name, position, int(year.replace('\n', ''))))
 
     return workers_data
