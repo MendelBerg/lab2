@@ -12,7 +12,7 @@ def sort_data(staff):
     return staff
 
 
-def have_experience(exp, staff):
+def get_staff_with_experience(exp, staff):
     from datetime import datetime as date
 
     staff_true = [worker.name for worker in staff if date.now().year - worker.year > exp]
