@@ -9,6 +9,8 @@ def sort_data(staff):
             if staff[i].name > staff[i + 1].name:
                 staff[i], staff[i + 1] = staff[i + 1], staff[i]
 
+    return staff
+
 
 def have_experience(exp, staff):
     from datetime import datetime as date
@@ -25,7 +27,7 @@ def have_experience(exp, staff):
 def get_arr_data(file_name):
     file = open(f'files/{file_name}.txt', 'r')
 
-    workers_data = [
+    return [
         Firma(
             name=worker[0],
             position=worker[1],
@@ -39,13 +41,11 @@ def get_arr_data(file_name):
         ]
     ]
 
-    return workers_data
 
-
-def put_data(file_name, workers_data):
+def put_data(file_name, staff):
     file = open(f"files/{file_name}.txt", "w")
 
-    for worker in workers_data:
+    for worker in staff:
         file.write(f'{worker.name}, {worker.position}, {worker.year}\n')
 
     file.close()
