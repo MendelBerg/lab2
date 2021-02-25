@@ -27,10 +27,11 @@ def get_arr_data(file_name):
 
 
 def sort_data(staff):
-    for _ in range(1, len(staff)):
-        for i in range(len(staff) - 1):
-            if staff[i].name > staff[i + 1].name:
-                staff[i], staff[i + 1] = staff[i + 1], staff[i]
+    for top in range(1, len(staff)):
+        i = top
+        while i > 0 and staff[i - 1].name > staff[i].name:
+            staff[i], staff[i - 1] = staff[i - 1], staff[i]
+            i -= 1
 
     return staff
 
