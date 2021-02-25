@@ -3,31 +3,27 @@ from collections import namedtuple
 Firma = namedtuple("Firma", "name position year")
 
 
-def put_data(file_name, staff):
-    file = open(f"files/{file_name}.txt", "w")
-
-    for worker in staff:
-        file.write(f'{worker.name}, {worker.position}, {worker.year}\n')
-
-    file.close()
+def put_data(file_name, staff):  # staff is an arr with staff structures
+    with open(f"files/{file_name}.txt", "w") as file:
+        for worker in staff:
+            file.write(f'{worker.name}, {worker.position}, {worker.year}\n')
 
 
 def get_arr_data(file_name):
-    file = open(f'files/{file_name}.txt', 'r')
-
-    return [
-        Firma(
-            name=worker[0],
-            position=worker[1],
-            year=int(worker[2].replace('\n', ''))
-        )
-        for worker in [
-            file.readline().split(', ')
-            for _ in range(
-                sum(1 for _ in open(f'files/{file_name}.txt', 'r'))
+    with open(f'files/{file_name}.txt', 'r') as file:
+        return [
+            Firma(
+                name=worker[0],
+                position=worker[1],
+                year=int(worker[2].replace('\n', ''))
             )
+            for worker in [
+                file.readline().split(', ')
+                for _ in range(
+                    sum(1 for _ in open(f'files/{file_name}.txt', 'r'))
+                )
+            ]
         ]
-    ]
 
 
 def sort_data(staff):
