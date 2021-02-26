@@ -2,7 +2,7 @@ import tools
 
 tools.put_data('data', [
     tools.Firma(
-        input('Name: '),
+        input(f'The person #{_+1}\nName: '),
         input('Position: '),
         int(input('Year: '))
     )
